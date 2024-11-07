@@ -11,3 +11,17 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          secrets: |
+            FEEDGEN_APP_PASSWORD
+            FEEDGEN_HOSTNAME
+            FEEDGEN_PORT
+            FEEDGEN_PUBLISHER_DID
+            FEEDGEN_PUBLISHER_IDENTIFIER
+            FEEDGEN_SERVICE_DID
+        env:
+          FEEDGEN_APP_PASSWORD: ${{ secrets.API_KEY }}
+          FEEDGEN_HOSTNAME: ${{ secrets.FEEDGEN_HOSTNAME }}
+          FEEDGEN_PORT: ${{ secrets.FEEDGEN_PORT }}
+          FEEDGEN_PUBLISHER_DID: ${{ secrets.FEEDGEN_PUBLISHER_DID }}
+          FEEDGEN_PUBLISHER_IDENTIFIER: ${{ secrets.FEEDGEN_PUBLISHER_IDENTIFIER }}
+          FEEDGEN_SERVICE_DID: ${{ secrets.FEEDGEN_SERVICE_DID }}
