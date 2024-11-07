@@ -19,7 +19,7 @@ jobs:
             FEEDGEN_PUBLISHER_IDENTIFIER
             FEEDGEN_SERVICE_DID
         env:
-          FEEDGEN_APP_PASSWORD: ${{ secrets.API_KEY }}
+          FEEDGEN_APP_PASSWORD: ${{ secrets.FEEDGEN_APP_PASSWORD }}
           FEEDGEN_HOSTNAME: ${{ secrets.FEEDGEN_HOSTNAME }}
           FEEDGEN_PORT: ${{ secrets.FEEDGEN_PORT }}
           FEEDGEN_PUBLISHER_DID: ${{ secrets.FEEDGEN_PUBLISHER_DID }}
