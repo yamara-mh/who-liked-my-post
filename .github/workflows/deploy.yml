@@ -6,12 +6,22 @@ jobs:
     name: Deploy
     steps:
       - uses: actions/checkout@v4
+      - name: Populate wrangler.toml
+        run: |
+          >wrangler.toml
+          echo "name = \"${{ secrets.CLOUDFLARE_WORKER_NAME }}\"" >>wrangler.toml
+          echo compatibility_date = \"2023-05-30\" >>wrangler.toml
+          echo \[\[ d1_databases \]\] >>wrangler.toml
+          echo binding = \"DB\"  >>wrangler.toml
+          echo preview_database_id = \"DB\"  >>wrangler.toml
+          echo database_name = \"bsky-who-liked-me-db\"  >>wrangler.toml
+          echo "database_id = \"${{ secrets.CLOUDFLARE_D1_ID }}\""   >>wrangler.toml
+          
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --env $GITHUB_ENV
           secrets: |
             FEEDGEN_APP_PASSWORD
             FEEDGEN_HOSTNAME
@@ -26,3 +36,8 @@ jobs:
           FEEDGEN_PUBLISHER_DID: ${{ secrets.FEEDGEN_PUBLISHER_DID }}
           FEEDGEN_PUBLISHER_IDENTIFIER: ${{ secrets.FEEDGEN_PUBLISHER_IDENTIFIER }}
           FEEDGEN_SERVICE_DID: ${{ secrets.FEEDGEN_SERVICE_DID }}
+          command: |
+            deploy index.ts
+      - name: Cleanup wrangler.toml
+        run: |
+          rm -f wrangler.toml
