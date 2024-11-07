@@ -10,6 +10,7 @@ jobs:
         run: |
           >wrangler.toml
           echo "name = \"${{ secrets.CLOUDFLARE_WORKER_NAME }}\"" >>wrangler.toml
+          echo "main = \"src/index.ts\"" >> wrangler.toml
           echo compatibility_date = \"2023-05-30\" >>wrangler.toml
           echo \[\[ d1_databases \]\] >>wrangler.toml
           echo binding = \"DB\"  >>wrangler.toml
@@ -36,8 +37,6 @@ jobs:
           FEEDGEN_PUBLISHER_DID: ${{ secrets.FEEDGEN_PUBLISHER_DID }}
           FEEDGEN_PUBLISHER_IDENTIFIER: ${{ secrets.FEEDGEN_PUBLISHER_IDENTIFIER }}
           FEEDGEN_SERVICE_DID: ${{ secrets.FEEDGEN_SERVICE_DID }}
-          command: |
-            deploy index.ts
       - name: Cleanup wrangler.toml
         run: |
           rm -f wrangler.toml
