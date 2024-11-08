@@ -12,7 +12,7 @@ jobs:
           echo "name = \"${{ secrets.CLOUDFLARE_WORKER_NAME }}\"" >>wrangler.toml
           echo "main = \"src/index.ts\"" >> wrangler.toml
           echo compatibility_date = \"2023-05-30\" >>wrangler.toml
-          echo compatibility_flags = [\nodejs_compat_v2\] >>wrangler.toml
+          echo compatibility_flags = \[nodejs_compat_v2\] >>wrangler.toml
           echo \[\[ d1_databases \]\] >>wrangler.toml
           echo binding = \"DB\"  >>wrangler.toml
           echo preview_database_id = \"DB\"  >>wrangler.toml
