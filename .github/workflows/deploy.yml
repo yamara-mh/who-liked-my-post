@@ -17,6 +17,7 @@ jobs:
           echo preview_database_id = \"DB\"  >>wrangler.toml
           echo database_name = \"bsky-who-liked-me-db\"  >>wrangler.toml
           echo "database_id = \"${{ secrets.CLOUDFLARE_D1_ID }}\""   >>wrangler.toml
+          echo `compatibility_flags = [ "nodejs_compa" ]` >> wrangler.toml
           
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
