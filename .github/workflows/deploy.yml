@@ -14,7 +14,6 @@ jobs:
           >wrangler.toml
           echo "name = \"${{ secrets.CLOUDFLARE_WORKER_NAME }}\"" >>wrangler.toml
           echo "main = \"src/server.ts\"" >> wrangler.toml
-          echo "main = \"src/subscription.ts\"" >> wrangler.toml
           echo compatibility_date = \"2024-09-23\" >>wrangler.toml
           echo compatibility_flags = \[\"nodejs_compat\"\] >>wrangler.toml
           echo \[\[ d1_databases \]\] >>wrangler.toml
