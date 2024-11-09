@@ -7,6 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+      - uses: cloudflare/wrangler-action@v3
         with:
           node-version: 20
       - name: Populate wrangler.toml
@@ -23,7 +24,6 @@ jobs:
           echo "database_id = \"${{ secrets.CLOUDFLARE_D1_ID }}\""   >>wrangler.toml
           
       - name: Deploy
-        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
