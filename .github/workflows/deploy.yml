@@ -14,6 +14,7 @@ jobs:
           >wrangler.toml
           echo "name = \"${{ secrets.CLOUDFLARE_WORKER_NAME }}\"" >>wrangler.toml
           echo "main = \"src/server.ts\"" >> wrangler.toml
+          echo "main = \"src/subscription.ts\"" >> wrangler.toml
           echo compatibility_date = \"2024-09-23\" >>wrangler.toml
           echo compatibility_flags = \[\"nodejs_compat\"\] >>wrangler.toml
           echo \[\[ d1_databases \]\] >>wrangler.toml
@@ -23,7 +24,7 @@ jobs:
           echo "database_id = \"${{ secrets.CLOUDFLARE_D1_ID }}\""   >>wrangler.toml
           
       - name: Deploy
-      - uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -41,7 +42,7 @@ jobs:
           FEEDGEN_PUBLISHER_DID: ${{ secrets.FEEDGEN_PUBLISHER_DID }}
           FEEDGEN_PUBLISHER_IDENTIFIER: ${{ secrets.FEEDGEN_PUBLISHER_IDENTIFIER }}
           FEEDGEN_SERVICE_DID: ${{ secrets.FEEDGEN_SERVICE_DID }}
-          
+
       - name: Cleanup wrangler.toml
         run: |
           rm -f wrangler.toml
