@@ -23,7 +23,7 @@ jobs:
           echo "database_id = \"${{ secrets.CLOUDFLARE_D1_ID }}\""   >>wrangler.toml
           
       - name: Deploy
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
